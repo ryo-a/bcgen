@@ -1,0 +1,36 @@
+/* Settings of the Sheet */
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+   margin:0mm;
+   padding:0mm; 
+   /* If you want to set background color for your cards, set background-color here. ---- */
+   /* background-color: #DDDDDD; */
+}
+.A4{
+    width: 210mm;
+    /*height: 297mm;*/
+}
+
+.header{
+    width: 210mm;
+    height: 11mm;
+}
+
+.card-container{
+    padding-left:14mm;
+    padding-right: 14mm;
+    padding-top:0mm;
+    padding-bottom:0mm;
+    height: 275mm;
+    width:210mm;
+}
+
+.card{
+    float:left;
+    width:91mm;
+    height:55mm;
+    margin: 0mm;
+}
