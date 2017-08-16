@@ -11,14 +11,14 @@
     <header class="toolbar toolbar-header">
       <div class="toolbar-actions">
         <div class="btn-group">
-          <button class="btn btn-default">
+          <button class="btn btn-default" onclick="clickSelectCSV();">
                     <span class="icon icon-vcard icon-text"></span> 氏名情報CSV選択
           </button>
-          <button class="btn btn-default">
+          <button class="btn btn-default" onclick="clickSelectTemplate();">
                     <span class="icon icon-doc-text-inv icon-text"></span> 名刺テンプレート選択
           </button>
 
-          <button class="btn btn-default">
+          <button class="btn btn-default" onclick="clickSave();">
                   <span class="icon icon-popup icon-text"></span> 保存
           </button>
 
@@ -33,130 +33,46 @@
           <table class="table-striped">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Kind</th>
-                <th>Date Modified</th>
-                <th>Author</th>
+                <th>NAME_JA</th>
+                <th>NAME_EN</th>
+                <th>AFFILIATION</th>
+                <th>EMAIL</th>
+                <th>TEL</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>bars.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
+                <td>涼風青葉</td>
+                <td>Aoba Suzukaze</td>
+                <td>株式会社イーグルジャンプ</td>
+                <td>aoba.suzukaze@eaglejump.co.jp</td>
+                <td>000-0000-0000</td>
               </tr>
               <tr>
-                <td>base.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
+                <td>八神コウ</td>
+                <td>Ko Yagami</td>
+                <td>株式会社イーグルジャンプ</td>
+                <td>ko.yagami@eaglejump.co.jp</td>
+                <td>000-0000-0000</td>
               </tr>
               <tr>
-                <td>button-groups.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
+                <td>飯島ゆん</td>
+                <td>Yun Iijima</td>
+                <td>株式会社イーグルジャンプ</td>
+                <td>yun.iijima@eaglejump.co.jp</td>
+                <td>000-0000-0000</td>
               </tr>
-              <tr>
-                <td>buttons.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>docs.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>forms.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>grid.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>icons.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>images.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>lists.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>mixins.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>navs.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>normalize.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>photon.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>tables.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>tabs.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>utilities.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
-              <tr>
-                <td>variables.scss</td>
-                <td>Document</td>
-                <td>Oct 13, 2015</td>
-                <td>connors</td>
-              </tr>
+
             </tbody>
-          </table>      
+          </table>
         </div>
         <div class="pane">
-            <webview id="foo" src="https://www.github.com/" style="width:100%; height:100%"></webview>
+          <webview id="foo" src="file:///E:/dev/business-card-generator/templates/businesscards.html" style="width:100%; height:100%"></webview>
         </div>
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="renderer.js"></script>
 </body>
 
 </html>
