@@ -8,7 +8,12 @@
     "babel-polyfill": "^6.23.0",
     "chrome-remote-interface": "^0.24.3",
     "command-exists": "^1.2.2",
+    "command-line-args": "^4.0.7",
+    "csv-parse": "^1.2.1",
+    "iconv-lite": "^0.4.18",
+    "jschardet": "^1.5.1",
     "minimist": "^1.2.0",
+    "puppeteer": "^0.10.2",
     "update-notifier": "^2.1.0"
   },
   "devDependencies": {
@@ -19,6 +24,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "ryo-a",
+  "license": "ISC",
+  "bin": {
+    "bcgen": "index.js"
+  }
 }
