@@ -1,3 +1,3 @@
-const RenderPDF = require('./chromepdf.js');
-
-RenderPDF.generateSinglePdf('file:///E:/dev/business-card-generator/templates/businesscards.html', 'test.pdf');
+const chrome = require('./pdfPrinter.js');
+chrome.printPDF('http://www.google.com','funcTest3.pdf','A4');
+chrome.printPDF('http://twitter.com','funcTest4.pdf','A4');
