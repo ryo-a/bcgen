@@ -67,18 +67,18 @@ for (var item in database) {
             HTMLbuffer = HTMLbuffer.replace(rexp, database[item][key]);
         }
         
-        var promiseData = new Object();
-        promiseData.html = HTMLbuffer;
-        promiseData.cardname = item;
-        resolve(promiseData);
+        var cardData = new Object();
+        cardData.htmlSrc = HTMLbuffer;
+        cardData.number = item;
+        resolve(cardData);
     });
-    promise.then(function(value){
+    promise.then(function(card){
         
-        let htmlFileName = exportDir + '/exported' + value.cardname + '.html'
-        fs.writeFile(htmlFileName, value.html, function (err) {
+        let htmlFileName = exportDir + '/exported' + card.number + '.html'
+        fs.writeFile(htmlFileName, card.htmlSrc, function (err) {
             if (err) throw err;
             console.log("書き込み完了");
-            chrome.printPDF('file:///' + path.resolve(htmlFileName), 'testpdf' + value.cardname + '.pdf', paperWidth, paperHeight);
+            chrome.printPDF('file:///' + path.resolve(htmlFileName), 'card-' + card.number + '.pdf', paperWidth, paperHeight);
         });
     });
 
