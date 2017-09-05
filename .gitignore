@@ -1,2 +1,5 @@
 *.pdf
 node_modules/
+exp/
+temp/
+tmp/
