@@ -10,7 +10,8 @@ const csv = require('./csvparse.js');
 const optionDefinitions = [
     { name: 'csv', alias: 'c', type: String },
     { name: 'template', alias: 't', type: String},
-    { name: 'size', alias: 's', type: String, defaultValue: 'A4' }
+    { name: 'size', alias: 's', type: String, defaultValue: 'A4' },
+    { name: 'savehtml', alias: 'h', type: Boolean, defaultValue: false }
 ]
 const options = commandLineArgs(optionDefinitions);
 
@@ -26,7 +27,7 @@ if (options.template == null){
     templateName = 'basic-card';
     //TODO: DEFAULT TEMPLATE MODE
 } else {
-    templaneName = options.template;
+    templateName = options.template;
 }
 
 /* ---- set directories ---- */
@@ -51,28 +52,18 @@ if (options.size == 'A4') {
 }
 
 /* ---- set template ---- */
-let templateDir = './' + templateName;
+let templateDir = templateName;
+
 let templatePath = templateDir + '/' + options.size + '.html';
 
 /* ---- read CSV data and jsonize---- */
 let database = csv.parse(options.csv); //csvparse.js
 
 /* ---- set exporting Dir ----*/
-let exportDir = tempDir + '/bcgen';
-
-console.log('expDir:' + exportDir);
-fs.mkdirsSync(exportDir,function(err){
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-    fs.copySync(templateDir,exportDir + '/' + templateName);
-    console.log('EXPTMPL' + exportDir + '/' + templateName);
-});
+let exportDir = templateDir;
 
 /* ---- read template ---- */
 const templateHTMLsrc = fs.readFileSync(templatePath, 'utf8');
-///Users/maki/dev/basic-card/A4.html'
 
 /* ---- generating Data ---- */
 
@@ -91,15 +82,11 @@ for (var item in database) {
         resolve(cardData);
     });
     promise.then(function(card){
-        
-        let htmlFileName = exportDir + '/exported' + card.number + '.html'
-        console.log(path.resolve(htmlFileName));
+        let htmlFileName = exportDir + '/' + card.number + '.html';
         fs.writeFile(htmlFileName, card.htmlSrc, function (err) {
             if (err) throw err;
-            console.log("書き込み完了");
-            chrome.printPDF('chrome://version', 'xcard-' + card.number + '.pdf', paperWidth, paperHeight);
-            /* /var/folders/gx/wp5plbq97nb5mknzrqz09md80000gn/T/bcgen/exported4.html */
-            console.log(fs.readFileSync(path.resolve(htmlFileName), 'utf8'));
+            console.log("書き込み完了:" + path.resolve(htmlFileName));
+            chrome.printPDF('file:///' + path.resolve(htmlFileName), 'xtempcard-' + card.number + '.pdf', paperWidth, paperHeight);
         });
     });
 
