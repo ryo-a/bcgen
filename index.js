@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const os = require('os');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const commandLineArgs = require('command-line-args');
 const chrome = require('./chrome.js');
@@ -9,19 +9,29 @@ const csv = require('./csvparse.js');
 /* ---- set command-line-args ---- */
 const optionDefinitions = [
     { name: 'csv', alias: 'c', type: String },
-    { name: 'template', alias: 't', type: String, defaultValue: 'basic' },
-    { name: 'size', alias: 's', type: String, defaultValue: 'A4' }
+    { name: 'template', alias: 't', type: String},
+    { name: 'size', alias: 's', type: String, defaultValue: 'A4' },
+    { name: 'savehtml', alias: 'h', type: Boolean, defaultValue: false }
 ]
 const options = commandLineArgs(optionDefinitions);
 
 /* ---- error ---- */
 if (options.csv == null) {
-    console.error('[ERR!] CSV is not designated. You should designate a source csv file like: --csv carddata.csv');
+    console.error('\u001b[31m[ERR!]\u001b[0m CSV is not designated. You should designate a source csv file like: --csv carddata.csv');
     process.exit(1);
 }
 
+let templateName;
+if (options.template == null){
+    console.log('[WARN!] template directory is not designated. So bcgen use the default template.');
+    templateName = 'basic-card';
+    //TODO: DEFAULT TEMPLATE MODE
+} else {
+    templateName = options.template;
+}
+
 /* ---- set directories ---- */
-let bcgenDir = path.dirname(process.argv[1]);
+let bcgenDir = path.dirname(process.argv[1]) + '/bcgen';
 let tempDir = os.tmpdir();
 
 /* ---- set paper size ---- */
@@ -42,19 +52,18 @@ if (options.size == 'A4') {
 }
 
 /* ---- set template ---- */
-let templateName = options.template;
-let templateDir = bcgenDir + '/templates/' + templateName
+let templateDir = templateName;
+
 let templatePath = templateDir + '/' + options.size + '.html';
 
 /* ---- read CSV data and jsonize---- */
 let database = csv.parse(options.csv); //csvparse.js
 
+/* ---- set exporting Dir ----*/
+let exportDir = templateDir;
+
 /* ---- read template ---- */
 const templateHTMLsrc = fs.readFileSync(templatePath, 'utf8');
-
-/* ---- set exporting Dir ----*/
-let exportDir = bcgenDir + '/exp';
-//TODO: move template CSS/IMG files to expDir
 
 /* ---- generating Data ---- */
 
@@ -73,12 +82,11 @@ for (var item in database) {
         resolve(cardData);
     });
     promise.then(function(card){
-        
-        let htmlFileName = exportDir + '/exported' + card.number + '.html'
+        let htmlFileName = exportDir + '/' + card.number + '.html';
         fs.writeFile(htmlFileName, card.htmlSrc, function (err) {
             if (err) throw err;
-            console.log("書き込み完了");
-            chrome.printPDF('file:///' + path.resolve(htmlFileName), 'card-' + card.number + '.pdf', paperWidth, paperHeight);
+            console.log("書き込み完了:" + path.resolve(htmlFileName));
+            chrome.printPDF('file:///' + path.resolve(htmlFileName), 'xtempcard-' + card.number + '.pdf', paperWidth, paperHeight);
         });
     });
 

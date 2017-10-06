@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+
+.card{
+    /*  These styles are already designated in 10cards_base.css
+    float:left;
+    width:91mm;
+    height:55mm;
+    margin: 0mm;
+    */
+    background-color: #FFF;
+    font-size: 6pt;
+    font-family:'源ノ角ゴシック JP', '源ノ角ゴシック', Source Han Sans;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.logoArea{
+    width:40%;
+    height:100%;
+    float:left;
+    
+}
+
+.dataArea{
+    width:60%;
+    height:100%;
+    float:left;
+    padding-top: 6mm;
+    margin:0mm;
+}
+
+.logoImg{
+    width: 100%;
+    margin-top: 10mm;
+}
+
+.affiliation{
+    margin:0mm;
+    padding:0mm;
+}
+
+.nameJA{
+    font-size: 18pt;
+    font-weight:800;
+    margin:0mm;
+    padding:0mm;
+}
+
+.nameEN{
+    font-size: 10pt;
+    font-weight:600;
+    margin:0mm;
+    padding:0mm;
+}
+
+.email{
+    margin:0mm;
+    padding-top:1mm;
+}
+
+.tel{
+    margin:0mm;
+    padding:0mm;
+}
+
+.common{
+    margin-top: 3.5mm;
+    padding:0mm;
+}
+
+.corpname{
+    font-size: 11pt;
+    font-weight: 600;
+}
+
+
+
