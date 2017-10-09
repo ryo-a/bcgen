@@ -1,10 +1,12 @@
 const fs = require('fs');
 const csv = require('csv-parse');
 const parse = require('csv-parse/lib/sync');
+const iconv = require('iconv-lite');
+const jschardet = require('jschardet');
 
 exports.parse = function(csvFileName){
-    //TODO: SJIS -> UTF-8
     let data = fs.readFileSync(csvFileName);
-    var result = parse(data, { columns: true });
+    let encodedData = iconv.decode(data, jschardet.detect(data).encoding);
+    var result = parse(encodedData, { columns: true });
     return result;
 }
