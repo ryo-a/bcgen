@@ -11,7 +11,7 @@ const optionDefinitions = [
     { name: 'csv', alias: 'c', type: String },
     { name: 'template', alias: 't', type: String},
     { name: 'size', alias: 's', type: String, defaultValue: 'A4' },
-    { name: 'savehtml', alias: 'h', type: Boolean, defaultValue: false }
+    { name: 'leavehtml', alias: 'l', type: Boolean, defaultValue: false }
 ]
 const options = commandLineArgs(optionDefinitions);
 
